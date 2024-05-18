@@ -1,0 +1,33 @@
+{
+  "name": "batify_mB",
+  "version": "1.0.0",
+  "description": "CS 361 project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/6dayspizza/batify_mB.git"
+  },
+  "author": "ruth",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/6dayspizza/batify_mB.git"
+  },
+  "homepage": "https://github.com/6dayspizza/batify_mB#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "csv-parser": "^3.0.0",
+    "express": "^4.19.2",
+    "express-handlebars": "^7.1.2",
+    "fs": "^0.0.1-security",
+    "hbs": "^4.2.0",
+    "install": "^0.13.0",
+    "npm": "^10.7.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.1.0"
+  }
+}
