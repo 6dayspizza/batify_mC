@@ -41,9 +41,10 @@ app.post('/', async (req, res) => {
     
     try {
         // Forward the data to another microservice
-        const response = await axios.post('https://young-temple-29103-db4fe9f80609.herokuapp.com', { species });
+        const response = await axios.post('https://young-temple-29103-db4fe9f80609.herokuapp.com/species', { species });
         const receivedData = response.data;
         console.log('Forwarded data response:', receivedData);
+        const box = receivedData.sizecat
 
         // Check the condition and respond accordingly
         if (receivedData.food) {
@@ -62,7 +63,7 @@ app.post('/', async (req, res) => {
             }
             
             // Respond to the initial request with the calculated foodValue
-            res.status(200).send({ foodValue,sizecat });
+            res.status(200).send({ foodValue, box });
         } else {
             res.status(200).send('Data received and processed, but food is not found');
         }
