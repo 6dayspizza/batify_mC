@@ -62,7 +62,7 @@ app.post('/', async (req, res) => {
             }
             
             // Respond to the initial request with the calculated foodValue
-            res.status(200).send({ foodValue });
+            res.status(200).send({ foodValue,sizecat });
         } else {
             res.status(200).send('Data received and processed, but food is not found');
         }
@@ -74,7 +74,7 @@ app.post('/', async (req, res) => {
 
 
 app.get('/', (req, res) => {
-    res.send('hello microserviceB');
+    res.send('hi microserviceB');
 });
 
 app.listen(port, () => {
