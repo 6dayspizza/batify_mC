@@ -44,26 +44,27 @@ app.post('/', async (req, res) => {
         const response = await axios.post('https://young-temple-29103-db4fe9f80609.herokuapp.com/species', { species });
         const receivedData = response.data;
         console.log('Forwarded data response:', receivedData);
-        const box = receivedData.sizecat
+        const box = receivedData.sizecat;
+        const foodValue = receivedData.food
 
         // Check the condition and respond accordingly
         if (receivedData.food) {
 
-            let foodValue;
+            let foodValueCombined;
             if (age === "baby") {
-                foodValue = "0.3 ml milk";
+                foodValueCombined = "0.3 ml milk";
             } else if (age === "teenager") {
-                foodValue = `0.2 ml milk and ${response.data.food * 0.5} mw ${response.data.foodshape}`;
+                foodValueCombined = `0.2 ml milk and ${response.data.food * 0.5} mw ${response.data.foodshape}`;
             } else if (condition === "optimal") {
-                foodValue = `${response.data.food} mw ${response.data.foodshape}`;
+                foodValueCombined = `${response.data.food} mw ${response.data.foodshape}`;
             } else if (condition === "underweight") {
-                foodValue = `${response.data.food * 1.2} mw ${response.data.foodshape}`;
+                foodValueCombined = `${response.data.food * 1.2} mw ${response.data.foodshape}`;
             } else if (condition === "overweight") {
-                foodValue = `${response.data.food * 0.8} mw ${response.data.foodshape}`;
+                foodValueCombined = `${response.data.food * 0.8} mw ${response.data.foodshape}`;
             }
             
             // Respond to the initial request with the calculated foodValue
-            res.status(200).send({ foodValue, box });
+            res.status(200).send({ foodValueCombined, box, foodValue });
         } else {
             res.status(200).send('Data received and processed, but food is not found');
         }
