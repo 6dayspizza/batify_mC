@@ -45,7 +45,7 @@ app.post('/', async (req, res) => {
         const receivedData = response.data;
         console.log('Forwarded data response:', receivedData);
         const box = receivedData.sizecat;
-        const foodValue = receivedData.food
+        let foodValue = receivedData.food
 
         // Check the condition and respond accordingly
         if (receivedData.food) {
@@ -55,12 +55,15 @@ app.post('/', async (req, res) => {
                 foodValueCombined = "0.3 ml milk";
             } else if (age === "teenager") {
                 foodValueCombined = `0.2 ml milk and ${response.data.food * 0.5} mw ${response.data.foodshape}`;
+                foodValue = `${response.data.food * 0.5}`;
             } else if (condition === "optimal") {
                 foodValueCombined = `${response.data.food} mw ${response.data.foodshape}`;
             } else if (condition === "underweight") {
                 foodValueCombined = `${response.data.food * 1.2} mw ${response.data.foodshape}`;
+                foodValue = `${response.data.food * 1.2}`;
             } else if (condition === "overweight") {
                 foodValueCombined = `${response.data.food * 0.8} mw ${response.data.foodshape}`;
+                foodValue = `${response.data.food * 0.8}`;
             }
             
             // Respond to the initial request with the calculated foodValue
