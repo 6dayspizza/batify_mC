@@ -80,7 +80,7 @@ app.post('/', async (req, res) => {
 
 
 app.get('/', (req, res) => {
-    res.send('hi microserviceB');
+    res.send('hi microserviceC');
 });
 
 app.listen(port, () => {

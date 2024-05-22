@@ -1,5 +1,5 @@
 {
-  "name": "batify_mB",
+  "name": "batify_mC",
   "version": "1.0.0",
   "description": "CS 361 project",
   "main": "app.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/6dayspizza/batify_mB.git"
+    "url": "git+https://github.com/6dayspizza/batify_mC.git"
   },
   "author": "ruth",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/6dayspizza/batify_mB.git"
+    "url": "https://github.com/6dayspizza/batify_mC.git"
   },
-  "homepage": "https://github.com/6dayspizza/batify_mB#readme",
+  "homepage": "https://github.com/6dayspizza/batify_mC#readme",
   "dependencies": {
     "axios": "^1.6.8",
     "cors": "^2.8.5",
