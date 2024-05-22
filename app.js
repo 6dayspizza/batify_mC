@@ -35,48 +35,21 @@ const hbs = exphbs.create({
 app.engine(".hbs", hbs.engine);
 app.set("view engine", ".hbs");
 
-app.post('/', async (req, res) => {
-    const { species, age, condition } = req.body;
-    console.log('Received data:', species, age);
-    
+app.get('/find-volunteer', async (req, res) => {
     try {
-        // Forward the data to another microservice
-        const response = await axios.post('https://young-temple-29103-db4fe9f80609.herokuapp.com/species', { species });
-        const receivedData = response.data;
-        console.log('Forwarded data response:', receivedData);
-        const box = receivedData.sizecat;
-        let foodValue = receivedData.food
+        const response = await axios.get('https://young-temple-29103-db4fe9f80609.herokuapp.com/volunteers');
+        
+        const { name, email } = response.data;
+        
+        await axios.post('https://lit-everglades-39146-fd2b4b5a3c5f.herokuapp.com', { name, email });
 
-        // Check the condition and respond accordingly
-        if (receivedData.food) {
-
-            let foodValueCombined;
-            if (age === "baby") {
-                foodValueCombined = "0.3 ml milk";
-                foodValue = null;
-            } else if (age === "teenager") {
-                foodValueCombined = `0.2 ml milk and ${response.data.food * 0.5} mw ${response.data.foodshape}`;
-                foodValue = `${response.data.food * 0.5}`;
-            } else if (condition === "optimal") {
-                foodValueCombined = `${response.data.food} mw ${response.data.foodshape}`;
-            } else if (condition === "underweight") {
-                foodValueCombined = `${response.data.food * 1.2} mw ${response.data.foodshape}`;
-                foodValue = `${response.data.food * 1.2}`;
-            } else if (condition === "overweight") {
-                foodValueCombined = `${response.data.food * 0.8} mw ${response.data.foodshape}`;
-                foodValue = `${response.data.food * 0.8}`;
-            }
-            
-            // Respond to the initial request with the calculated foodValue
-            res.status(200).send({ foodValueCombined, box, foodValue });
-        } else {
-            res.status(200).send('Data received and processed, but food is not found');
-        }
+        res.status(200).send('Data forwarded successfully');
     } catch (error) {
-        console.error('Error forwarding data:', error);
-        res.status(500).send('Error forwarding data');
+        console.error('Error fetching or forwarding data:', error);
+        res.status(500).send('An error occurred');
     }
 });
+
 
 
 app.get('/', (req, res) => {
