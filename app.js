@@ -35,15 +35,13 @@ const hbs = exphbs.create({
 app.engine(".hbs", hbs.engine);
 app.set("view engine", ".hbs");
 
-app.get('/find-volunteer', async (req, res) => {
+app.get('/', async (req, res) => {
     try {
         const response = await axios.get('https://young-temple-29103-db4fe9f80609.herokuapp.com/volunteers');
         
         const { name, email } = response.data;
         
-        await axios.post('https://lit-everglades-39146-fd2b4b5a3c5f.herokuapp.com', { name, email });
-
-        res.status(200).send('Data forwarded successfully');
+        res.json({ name, email });
     } catch (error) {
         console.error('Error fetching or forwarding data:', error);
         res.status(500).send('An error occurred');
