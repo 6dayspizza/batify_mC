@@ -53,6 +53,7 @@ app.post('/', async (req, res) => {
             let foodValueCombined;
             if (age === "baby") {
                 foodValueCombined = "0.3 ml milk";
+                foodValue = "none";
             } else if (age === "teenager") {
                 foodValueCombined = `0.2 ml milk and ${response.data.food * 0.5} mw ${response.data.foodshape}`;
                 foodValue = `${response.data.food * 0.5}`;
